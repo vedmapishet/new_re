@@ -25,7 +25,7 @@ public class ApiTests {
     public void checkCeoIsElonMusk(){
         given().get("/company")
                 .then().log().body()
-                .body("ceo", equalTo("Elon Musk"));
+                .body("ceo", equalTo("Elon1 Musk"));
     }
 
     @Test
