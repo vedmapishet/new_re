@@ -14,7 +14,7 @@ Integration tests with Allure:
   stage: test
   script:
     - ./gradlew clean test
-    - ./gradle allureReport
+    - ./gradlew allureReport
   artifacts:
     paths:
       - build/reports/allure-report/allureReport/*
