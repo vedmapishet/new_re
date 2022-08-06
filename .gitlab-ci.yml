@@ -1,3 +1,4 @@
+#Образ для градл
 image: gradle:alpine
 
 #image: maven:3.8-openjdk-11
