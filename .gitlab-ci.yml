@@ -18,6 +18,7 @@ API Test:
   script:
     - ./gradlew -x test apiTests
   artifacts:
+    when: always
     paths:
       - build/allure-results
 
@@ -27,6 +28,7 @@ UI Test:
   script:
     - ./gradlew -x test uiTests
   artifacts:
+    when: always
     paths:
       - build/allure-results
 
