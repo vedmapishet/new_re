@@ -9,6 +9,7 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$x;
 
+@Tag("UI")
 public class UiTests {
 
     @BeforeAll
