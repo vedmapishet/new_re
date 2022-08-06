@@ -13,7 +13,6 @@ stages:
 Integration tests with Allure:
   stage: test
   script:
-    -  SET JAVA_HOME="E:\JavaTemp\jdk8"
     - ./gradlew clean test
     - ./gradle allureReport
   artifacts:
