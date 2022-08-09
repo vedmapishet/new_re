@@ -7,22 +7,19 @@ stages:
 
 .tests:
   script: 
-      - echo "my var - $VAR1"
+      - echo "my var - $VAR1, my var2 - $VAR2"
 
 Extended Job:
-    variables: 
-        VAR1: OLEG
+    variables: {VAR1: OLEG, VAR2: OLEG2}
     stage: extend-stage
     extends: .tests
 
 Extended Job2:
-    variables: 
-        VAR1: OLEG2
+    variables: {VAR1: OLEG3, VAR2: OLEG4}
     stage: extend-stage
     extends: .tests
 
 Extended Job3:
-    variables: 
-        VAR1: OLEG3
+    variables: {VAR1: OLEG5, VAR2: OLEG6}
     stage: extend-stage
     extends: .tests
