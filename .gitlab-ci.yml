@@ -8,10 +8,21 @@ stages:
 .tests:
   script: 
       - echo "my var - $VAR1"
-  stage: extend-stage
 
 Extended Job:
     variables: 
         VAR1: OLEG
+    stage: extend-stage
+    extends: .tests
+
+Extended Job2:
+    variables: 
+        VAR1: OLEG2
+    stage: extend-stage
+    extends: .tests
+
+Extended Job3:
+    variables: 
+        VAR1: OLEG3
     stage: extend-stage
     extends: .tests
