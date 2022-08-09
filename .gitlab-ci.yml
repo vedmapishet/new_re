@@ -4,18 +4,21 @@ default:
 
 stages:
     - extend-stage
+    - after-stage
 
+variables:
+   sdk_ver: "0.0.0"
+   build_number: "000"
+
+before_script:
+  - $sdk_ver="3.3.3"
+  - $build_number="4.4.4"
 
 
 Extended Job:
-    variables: {VAR1: OLEG, VAR2: OLEG2}
     stage: extend-stage
-    script: echo "UID is $EMULATOR_UID, name is $NAME, android is $ANDROID"
-    parallel:
-        matrix:
-      - EMULATOR_UID: 1
-        NAME: "PIXEL 2"
-        ANDROID: "API 29"
-      - EMULATOR_UID: 2
-        NAME: "PIXEL 3"
-        ANDROID: "API 30"
+    script: echo "sdk ver is $sdk_ver and build is $build_number"
+
+Extended Job:
+    stage: after-stage
+    script: echo "sdk ver is $sdk_ver and build is $build_number"
