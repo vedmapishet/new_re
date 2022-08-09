@@ -1,0 +1,15 @@
+default:
+  tags:
+    - test
+
+stages:
+    - matrix-stage
+
+Run Integration Tests:
+  stage: matrix-stage
+  parallel:
+    matrix:
+      - EMULATOR_UDID: [emulator-5554, emulator-5556, emulator-5558]
+        NAMES: [ Pixel_2, Pixel_3, Pixel_4 ]
+  script:
+    - echo "Android udid is $EMULATOR_UDID and name is $NAMES"
