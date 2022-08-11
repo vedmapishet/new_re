@@ -17,7 +17,8 @@ Extended Job:
        age=$var2
        city=Los Angeles
        country='345345'
-       hasCar=true >" local.properties
+       hasCar=true >" ./local.properties
+    - cat local.properties
     artifacts:
       paths:
         - local.properties
