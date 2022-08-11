@@ -12,10 +12,10 @@ Extended Job:
      - var1="Oleg"
      - var2="14"
      - echo "name=$var1
-        age=$var2
-        city=Los Angeles
-        country='345345'
-        hasCar=true >" ./local.properties
+     - age=$var2
+     - city=Los Angeles
+     - country='345345'
+     - hasCar=true >" local.properties
     artifacts:
       paths:
         - local.properties
