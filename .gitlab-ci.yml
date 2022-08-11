@@ -11,11 +11,10 @@ Extended Job:
     script:
      - var1="Oleg"
      - var2="14"
-     - echo -e
-        "name=$var1;
-      age=$var2;
-      city=Los Angeles;
-      country='345345';
+     - echo "name=$var1
+      age=$var2
+      city=Los Angeles
+      country='345345'
       hasCar=true > ./local.properties;"
     artifacts:
       paths:
