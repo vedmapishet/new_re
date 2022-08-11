@@ -14,7 +14,7 @@ Extended Job:
      - |
       echo -e "name=$var1
       age=$var2
-      city=Los Angeles
+      city=Perm
       country=345345
       hasCar=true" > ./local.properties
      - cat local.properties
