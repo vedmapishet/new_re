@@ -17,3 +17,6 @@ Extended Job:
       city=Los Angeles;
       country='345345';
       hasCar=true > ./local.properties;"
+    artifacts:
+      paths:
+        local.properties
