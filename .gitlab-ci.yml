@@ -19,4 +19,4 @@ Extended Job:
       hasCar=true > ./local.properties;"
     artifacts:
       paths:
-        local.properties
+        - local.properties
