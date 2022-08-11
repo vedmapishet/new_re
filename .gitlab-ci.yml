@@ -4,21 +4,16 @@ default:
 
 stages:
     - extend-stage
-    - after-stage
-
-variables:
-   sdk_ver: "0.0.0"
-   build_number: "000"
-
-before_script:
-  - $sdk_ver="3.3.3"
-  - $build_number="4.4.4"
 
 
 Extended Job:
     stage: extend-stage
-    script: echo "sdk ver is $sdk_ver and build is $build_number"
-
-Extended Job:
-    stage: after-stage
-    script: echo "sdk ver is $sdk_ver and build is $build_number"
+    script:
+     - var1="Oleg"
+     - var2="14"
+     - echo -e
+        "name=$var1;
+      age=$var2;
+      city=Los Angeles;
+      country='345345';
+      hasCar=true > ./local.properties;"
