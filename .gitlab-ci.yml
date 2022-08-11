@@ -11,10 +11,10 @@ Extended Job:
     script:
      - var1="Oleg"
      - var2="14"
-     - echo -e "name=$var1\n
-      age=$var2\n
-      city=Los Angeles\n
-      country=345345\n
+     - echo "name=$var1
+      age=$var2
+      city=Los Angeles
+      country=345345
       hasCar=true" > ./local.properties
      - cat local.properties
     artifacts:
