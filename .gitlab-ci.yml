@@ -34,5 +34,6 @@ Extended Job:
      - cat some.txt
      - exit 1
     artifacts:
+      when: always
       paths:
         - some.txt
