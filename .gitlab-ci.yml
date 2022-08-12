@@ -7,8 +7,21 @@ stages:
 
 
 Extended Job:
+    allow_failure: true
     stage: extend-stage
     script:
+     - |
+      text_file="somes.txt"
+            if [ -f "$text_file" ]; then
+              if [ -s "$text_file" ]; then
+                echo $(cat $text_file)
+              else
+                echo "$text_file is empty"
+              fi
+            fi
+      echo "Test ended"
+      exit 0
+
      - var1="Oleg"
      - var2="14"
      - |
@@ -16,8 +29,9 @@ Extended Job:
       age=$var2
       city=Perm
       country=345345
-      hasCar=true" > ./local.properties
-     - cat local.properties
+      hasCar=true" > ./some.txt
+     - cat some.txt
+     - exit 1
     artifacts:
       paths:
-        - local.properties
+        - some.txt
