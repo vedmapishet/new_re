@@ -18,9 +18,10 @@ Extended Job:
               else
                 echo "$text_file is empty"
               fi
+              echo "Test ended"
+              exit 0
             fi
-      echo "Test ended"
-      exit 0
+
 
      - var1="Oleg"
      - var2="14"
