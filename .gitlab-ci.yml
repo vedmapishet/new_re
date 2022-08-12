@@ -13,7 +13,7 @@ ExtendedJob:
      - curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/38388889/jobs/artifacts/main/download?job=ExtendedJob&private_token=JsGwmoS164-V-aMpq-Sd"
      - unzip artifacts.zip || rm -rf artifacts.zip
      - |
-      text_file="somes.txt"
+      text_file="some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
                 echo $(cat $text_file)
