@@ -5,28 +5,22 @@ default:
 stages:
     - first
     - extend-stage
-    - clear-cache
 
 First Stage:
   stage: first
   script:
     - echo "some logic"
 
-Last Stage:
-  stage: clear-cache
-  script: 
-    - rm -rf some.txt
-
 .extendJob:
     cache: 
       when: on_failure
       paths:
-        - some.txt
+        - $VAR-some.txt
     allow_failure: true
     script:
       - echo "job var is $VAR"
       - |
-        text_file="some.txt"
+        text_file="$VAR-some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
                 echo $(cat $text_file)
@@ -44,8 +38,8 @@ Last Stage:
         age=$var2
         city=Perm
         country=345345
-        hasCar=true" > ./some.txt
-      - cat some.txt
+        hasCar=true" > ./$VAR-some.txt
+      - cat $VAR-some.txt
       - exit 1
 
 Job1:
