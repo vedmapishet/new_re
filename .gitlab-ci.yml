@@ -7,7 +7,7 @@ stages:
 
 .mainLogic:
   script:
-    - echo "$VAR1 run cache"
+    echo "$VAR1 run cache"
     - |
       text_file="some.txt"
             if [ -f "$text_file" ]; then
@@ -20,15 +20,14 @@ stages:
               exit 0
             fi
 
-
      - var1="Oleg"
      - var2="14"
      - |
-      echo -e "name=$var1
-      age=$var2
-      city=Perm
-      country=345345
-      hasCar=true" > ./some.txt
+       echo -e "name=$var1
+       age=$var2
+       city=Perm
+       country=345345
+       hasCar=true" > ./some.txt
      - cat some.txt
      - exit 1
 
