@@ -22,9 +22,9 @@ stages:
               else
                 echo "$text_file is empty"
               fi
-              echo "Test ended with status code $exit_code"
-              
-                if [ -z $exit_code ]; then
+              success_var=$(echo $?)
+              echo "Test ended with status code $success_var"
+                if [ -z $success_var ]; then
                   rm -rf "$tests_file"
                   rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/*"
                   exit 0
