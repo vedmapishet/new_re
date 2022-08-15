@@ -5,13 +5,14 @@ default:
 stages:
     - extend-stage
 
+cache: 
+  paths:
+    - some.txt
 
 ExtendedJob:
     allow_failure: true
     stage: extend-stage
-    cache: 
-      paths:
-        - some.txt
+
     script:
      - |
       text_file="some.txt"
