@@ -27,8 +27,8 @@ stages:
               echo "Test ended with status code $success_var"
                 if [ $success_var == 0 ]; then
                   rm -rf "$tests_file"
-                  echo "remove cache folder /Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/*"
-                  rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/*"
+                  echo "remove cache folder /Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/$VAR"
+                  rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/$VAR"
                   exit 0
                 fi
             fi
