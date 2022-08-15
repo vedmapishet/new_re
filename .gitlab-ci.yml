@@ -24,7 +24,7 @@ stages:
               fi
               success_var=$(echo $?)
               echo "Test ended with status code $success_var"
-                if [ -z $success_var ]; then
+                if [ $success_var == "0" ]; then
                   rm -rf "$tests_file"
                   rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/*"
                   exit 0
