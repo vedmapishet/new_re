@@ -28,6 +28,7 @@ First Stage:
                 echo "$text_file is empty"
               fi
               echo "Test ended"
+              rm -rf $VAR-some.txt
               exit 0
             fi
 
