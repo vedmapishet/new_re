@@ -5,11 +5,17 @@ default:
 stages:
     - first
     - extend-stage
+    - clear-cache
 
 First Stage:
   stage: first
   script:
     - echo "some logic"
+
+Last Stage:
+  stage: clear-cache
+  script: 
+    - rm -rf some.txt
 
 .extendJob:
     cache: 
