@@ -4,14 +4,7 @@ default:
 
 stages:
     - extend-stage
-    - clear
 
-Clear cache Stage:
-  stage: clear
-  script: 
-    - echo "Cleaning up"
-    - rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/default-protected"
-  when: always
 
 .extendJob:
     cache: 
@@ -30,7 +23,8 @@ Clear cache Stage:
                 echo "$text_file is empty"
               fi
               echo "Test ended with status code $exit_code"
-                if [ $exit_code == 0 ]; then
+              
+                if [ -z $exit_code ]; then
                   rm -rf "$tests_file"
                   rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/*"
                   exit 0
