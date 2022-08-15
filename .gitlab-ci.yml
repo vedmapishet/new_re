@@ -8,6 +8,7 @@ stages:
 
 .extendJob:
     cache: 
+      key: $VAR
       when: on_failure
       paths:
         - $VAR-some.txt
