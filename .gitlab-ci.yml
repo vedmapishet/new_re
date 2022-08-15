@@ -33,7 +33,7 @@ stages:
 
 ExtendedJob1:
     cache: 
-      when: always
+      when: on_failure
       paths:
         - some.txt
     allow_failure: true
@@ -41,9 +41,9 @@ ExtendedJob1:
     extends: .mainLogic
     variables: {VAR1: "FirstJob"} 
 
-ExtendedJob2:
+ExtendedJob:
     cache: 
-      when: always
+      when: on_failure
       paths:
         - some.txt
     allow_failure: true
