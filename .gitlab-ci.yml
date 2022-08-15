@@ -5,17 +5,10 @@ default:
 stages:
     - extend-stage
 
-cache: 
-  when: always
-  paths:
-    - some.txt
-
-ExtendedJob:
-    allow_failure: true
-    stage: extend-stage
-
-    script:
-     - |
+.mainLogic:
+  script:
+    - echo "$VAR1 run cache"
+    - |
       text_file="some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
@@ -38,3 +31,24 @@ ExtendedJob:
       hasCar=true" > ./some.txt
      - cat some.txt
      - exit 1
+
+ExtendedJob1:
+    cache: 
+      when: always
+      paths:
+        - some.txt
+    allow_failure: true
+    stage: extend-stage
+    extends: .mainLogic
+    variables: {VAR1: "FirstJob"} 
+
+ExtendedJob1:
+    cache: 
+      when: always
+      paths:
+        - some.txt
+    allow_failure: true
+    stage: extend-stage
+    extends: .mainLogic
+    variables: {VAR1: "SecondJob"} 
+    
