@@ -7,7 +7,8 @@ stages:
 
 .mainLogic:
   script:
-    echo "$VAR1 run cache"
+    echo "Run main logic"
+    - echo "Var from another job is $VAR1"
     - |
       text_file="some.txt"
             if [ -f "$text_file" ]; then
