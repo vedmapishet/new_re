@@ -6,6 +6,7 @@ stages:
     - extend-stage
 
 cache: 
+  when: always
   paths:
     - some.txt
 
@@ -37,7 +38,3 @@ ExtendedJob:
       hasCar=true" > ./some.txt
      - cat some.txt
      - exit 1
-    artifacts:
-      when: always
-      paths:
-        - some.txt
