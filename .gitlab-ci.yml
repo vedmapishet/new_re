@@ -9,9 +9,10 @@ stages:
 ExtendedJob:
     allow_failure: true
     stage: extend-stage
+    cache: 
+      paths:
+        - some.txt
     script:
-     - curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/38388889/jobs/artifacts/main/download?job=ExtendedJob&private_token=JsGwmoS164-V-aMpq-Sd"
-     - unzip artifacts.zip || rm -rf artifacts.zip
      - |
       text_file="some.txt"
             if [ -f "$text_file" ]; then
