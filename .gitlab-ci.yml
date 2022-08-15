@@ -2,10 +2,14 @@ default:
   tags:
     - test
 
-
-
 stages:
+    - first
     - extend-stage
+
+First Stage:
+  stage: first
+  script:
+    - echo "some logic"
 
 .extendJob:
     cache: 
