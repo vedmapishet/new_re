@@ -2,20 +2,21 @@ default:
   tags:
     - test
 
-cache: 
-      when: on_failure
-      paths:
-        - some.txt
+
 
 stages:
     - extend-stage
 
-.mainLogic:
-  stage: extend-stage
-  script:
-    echo "Var from another job is $VAR1"
-    |
-      text_file="some.txt"
+.extendJob:
+    cache: 
+      when: on_failure
+      paths:
+        - some.txt
+    allow_failure: true
+    script:
+      - echo "job var is $VAR"
+      - |
+        text_file="some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
                 echo $(cat $text_file)
@@ -26,25 +27,24 @@ stages:
               exit 0
             fi
 
-    var1="Oleg"
-    var2="14"
-    |
-       echo -e "name=$var1
-       age=$var2
-       city=Perm
-       country=345345
-       hasCar=true" > ./some.txt
-    cat some.txt
-    exit 1
+      - var1="Oleg"
+      - var2="14"
+      - |
+        echo -e "name=$var1
+        age=$var2
+        city=Perm
+        country=345345
+        hasCar=true" > ./some.txt
+      - cat some.txt
+      - exit 1
 
-ExtendedJob1:
-    allow_failure: true
-    extends: .mainLogic
-    variables: {VAR1: "FirstJob"} 
-
-ExtendedJob:
-    allow_failure: true
-  
-    extends: .mainLogic
-    variables: {VAR1: "SecondJob"} 
+Job1:
+  variables: {VAR: "FirstJob"} 
+  stage: extend-stage
+  extends: .extendJob
     
+
+Job2:
+  variables: {VAR: "SecondJob"} 
+  stage: extend-stage
+  extends: .extendJob
