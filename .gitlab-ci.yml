@@ -23,15 +23,14 @@ stages:
               else
                 echo "$text_file is empty"
               fi
-                if [ $exit_code -ne 1 ]; then
-                 echo "Previous command failed"
-                 exit 1
-                else 
-                  echo "Tests ended with status code 0"
-                  rm -rf "$text_file" || echo "Failed tests file not exist"
-                  rm -rf /Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/$VAR-* || echo "cache folder not exist"
-                  exit 0
-                fi 
+              if [ $exit_code -ne 1 ]; then
+                echo "Previous command failed"
+                exit 1
+              else 
+                echo "Tests ended with status code 0"
+                rm -rf "$text_file" || echo "Failed tests file not exist"
+                rm -rf /Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/$VAR-* || echo "cache folder not exist"
+                exit 0
               fi                 
             fi
 
