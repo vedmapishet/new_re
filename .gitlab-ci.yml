@@ -41,7 +41,7 @@ ExtendedJob1:
     extends: .mainLogic
     variables: {VAR1: "FirstJob"} 
 
-ExtendedJob1:
+ExtendedJob2:
     cache: 
       when: always
       paths:
