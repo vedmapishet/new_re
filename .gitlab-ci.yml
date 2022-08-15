@@ -5,6 +5,14 @@ default:
 stages:
     - first
     - extend-stage
+    - clear
+
+Clear cache Stage:
+  stage: clear
+  script: 
+    - echo "Cleaning up"
+    - rm -rf "/Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/default-protected"
+  when: always
 
 First Stage:
   stage: first
@@ -27,7 +35,7 @@ First Stage:
               else
                 echo "$text_file is empty"
               fi
-              echo "Test ended"
+              echo "Test ended with status code $exit_code"
               exit $exit_code
             fi
 
