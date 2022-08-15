@@ -23,13 +23,12 @@ First Stage:
         text_file="$VAR-some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
-                echo $(cat $text_file)
+                echo $(cat $text_file) || exit_code=$?
               else
                 echo "$text_file is empty"
               fi
               echo "Test ended"
-              rm -rf $VAR-some.txt
-              exit 0
+              exit $exit_code
             fi
 
       - var1="Oleg"
