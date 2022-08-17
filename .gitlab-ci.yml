@@ -7,20 +7,21 @@ stages:
 
 
 .extendJob:
-    cache: 
-      key: $VAR
-      when: on_failure
+    artifacts:
       paths:
-        - $VAR-some.txt
+      - $VAR-some.txt
     allow_failure: true
     script:
+      - curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/38388889/jobs/artifacts/cicd-threadqa/download?job=${CI_JOB_NAME}&private_token=glpat-Nawt4SmGJLoUnmGs3gww"
+      - unzip artifacts.zip || echo "unable unzip artifacts"
+      - rm -rf artifacts.zip
       - echo "job var is $VAR"
       - |
         text_file="$VAR-some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
-                #echo $(cat $text_file) || exit_code=$?
-                cd asd || exit_code=$?
+                echo $(cat $text_file) || exit_code=$?
+                #cd asd || exit_code=$?
               else
                 echo "$text_file is empty"
               fi
@@ -30,7 +31,6 @@ stages:
               else 
                 echo "Tests ended with status code 0"
                 rm -rf "$text_file" || echo "Failed tests file not exist"
-                rm -rf /Users/o.pendrak/cache/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/$VAR-* || echo "cache folder not exist"
                 exit 0
               fi                 
             fi
