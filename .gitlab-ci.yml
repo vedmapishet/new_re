@@ -8,7 +8,7 @@ stages:
 
 .extendJob:
     cache:
-    key: ${VAR}-${CI_COMMIT_BRANCH}
+    key: $VAR-${CI_COMMIT_BRANCH}
     when: on_failure
     paths:
       - $VAR-some.txt
