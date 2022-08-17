@@ -10,8 +10,8 @@ stages:
     cache:
       key: $VAR-${CI_COMMIT_BRANCH}
       when: on_failure
-    paths:
-      - $VAR-some.txt
+      paths:
+        - $VAR-some.txt
     allow_failure: true
     script:
       - echo "job var is $VAR"
