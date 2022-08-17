@@ -8,6 +8,7 @@ stages:
 
 .extendJob:
     artifacts:
+      when: on_failure
       paths:
       - $VAR-some.txt
     allow_failure: true
