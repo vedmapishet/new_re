@@ -13,9 +13,11 @@ stages:
       - $VAR-some.txt
     allow_failure: true
     script:
+      - echo "download artifacts ${CI_API_V4_URL}/projects/38388889/jobs/artifacts/${CI_COMMIT_BRANCH}/download?job=${CI_JOB_NAME}&private_token=glpat-Nawt4SmGJLoUnmGs3gww"
       - curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/38388889/jobs/artifacts/${CI_COMMIT_BRANCH}/download?job=${CI_JOB_NAME}&private_token=glpat-Nawt4SmGJLoUnmGs3gww"
+      - ls
       - unzip artifacts.zip || echo "unable unzip artifacts"
-      - rm -rf artifacts.zip
+      #- rm -rf artifacts.zip
       - echo "job var is $VAR"
       - |
         text_file="$VAR-some.txt"
