@@ -21,8 +21,8 @@ stages:
         text_file="$VAR-some.txt"
             if [ -f "$text_file" ]; then
               if [ -s "$text_file" ]; then
-                #echo $(cat $text_file) || exit_code=$?
-                cd asd || exit_code=$?
+                echo $(cat $text_file) || exit_code=$?
+                #cd asd || exit_code=$?
               else
                 echo "$text_file is empty"
               fi
@@ -31,7 +31,6 @@ stages:
                 exit 1
               else 
                 echo "Tests ended with status code 0"
-                rm -rf "$text_file" || echo "Failed tests file not exist"
                 exit 0
               fi                 
             fi
