@@ -20,7 +20,7 @@ SomeDotEnv:
 NextStage:
   stage: another-stage
   script:
-    - source job.env
+   # - source job.env
     - echo $var  
     - echo $var2
 # .extendJob:
