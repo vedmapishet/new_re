@@ -9,8 +9,8 @@ stages:
 SomeDotEnv:
   stage: extend-stage
   script:
-    - var="some value" > job.env
-    - var2="some value2" >> job.env
+    - echo "var=some value" > job.env
+    - echo "var2=some value2" >> job.env
   artifacts:
     paths:
         - job.env
