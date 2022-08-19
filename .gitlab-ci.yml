@@ -9,8 +9,10 @@ stages:
 SomeDotEnv:
   stage: extend-stage
   script:
-    - echo "var=some value" > job.env
-    - echo "var2=some value2" >> job.env
+    - build=1.1.1
+    - name="Android"
+    - echo "var=$build" > job.env
+    - echo "var2=$name" >> job.env
   artifacts:
     paths:
         - job.env
