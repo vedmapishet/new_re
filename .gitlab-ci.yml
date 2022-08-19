@@ -4,53 +4,68 @@ default:
 
 stages:
     - extend-stage
+    - another-stage
 
-
-.extendJob:
-    cache:
-      key: $VAR-${CI_COMMIT_BRANCH}
-      when: on_failure
-      paths:
-        - $VAR-some.txt
-    allow_failure: true
-    script:
-      - echo "job var is $VAR"
-      - |
-        text_file="$VAR-some.txt"
-            if [ -f "$text_file" ]; then
-              if [ -s "$text_file" ]; then
-                echo $(cat $text_file) || exit_code=$?
-                #cd asd || exit_code=$?
-              else
-                echo "$text_file is empty"
-              fi
-              if [ $exit_code -ne 0 ]; then
-                echo "Previous command failed"
-                exit 1
-              else 
-                echo "Tests ended with status code 0"
-                exit 0
-              fi                 
-            fi
-
-      - var1="Oleg"
-      - var2="14"
-      - |
-        echo -e "name=$var1
-        age=$var2
-        city=Perm
-        country=345345
-        hasCar=true" > ./$VAR-some.txt
-      - cat $VAR-some.txt
-      - exit 1
-
-Job1:
-  variables: {VAR: "FirstJob"} 
+SomeDotEnv:
   stage: extend-stage
-  extends: .extendJob
+  script:
+    - var="some value" > job.env
+    - var2="some value2" >> job.env
+  artifacts:
+    paths:
+        - job.env
+
+NextStage:
+  stage: another-stage
+  script:
+    - source job.env
+    - echo $var  
+    - echo $var2
+# .extendJob:
+#     cache:
+#       key: $VAR-${CI_COMMIT_BRANCH}
+#       when: on_failure
+#       paths:
+#         - $VAR-some.txt
+#     allow_failure: true
+#     script:
+#       - echo "job var is $VAR"
+#       - |
+#         text_file="$VAR-some.txt"
+#             if [ -f "$text_file" ]; then
+#               if [ -s "$text_file" ]; then
+#                 echo $(cat $text_file) || exit_code=$?
+#                 #cd asd || exit_code=$?
+#               else
+#                 echo "$text_file is empty"
+#               fi
+#               if [ $exit_code -ne 0 ]; then
+#                 echo "Previous command failed"
+#                 exit 1
+#               else 
+#                 echo "Tests ended with status code 0"
+#                 exit 0
+#               fi                 
+#             fi
+
+#       - var1="Oleg"
+#       - var2="14"
+#       - |
+#         echo -e "name=$var1
+#         age=$var2
+#         city=Perm
+#         country=345345
+#         hasCar=true" > ./$VAR-some.txt
+#       - cat $VAR-some.txt
+#       - exit 1
+
+# Job1:
+#   variables: {VAR: "FirstJob"} 
+#   stage: extend-stage
+#   extends: .extendJob
     
 
-Job2:
-  variables: {VAR: "SecondJob"} 
-  stage: extend-stage
-  extends: .extendJob
+# Job2:
+#   variables: {VAR: "SecondJob"} 
+#   stage: extend-stage
+#   extends: .extendJob
