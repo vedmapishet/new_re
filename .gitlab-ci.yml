@@ -5,6 +5,7 @@ default:
 stages:
     - extend-stage
     - another-stage
+    - final
 
 SomeDotEnv:
   stage: extend-stage
@@ -20,9 +21,17 @@ SomeDotEnv:
 NextStage:
   stage: another-stage
   script:
-   # - source job.env
+    - source job.env
     - echo $var  
     - echo $var2
+
+FinalStage:
+  stage: final
+  script:
+    - source job.env
+    - echo $var
+    - echo $var2
+
 # .extendJob:
 #     cache:
 #       key: $VAR-${CI_COMMIT_BRANCH}
