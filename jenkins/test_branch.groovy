@@ -57,16 +57,16 @@ def testPart() {
     } finally {
         labelledShell(label: 'Generate Allure Report', script: '''
             ./gradlew allureReport
-            zip -r report.zip build/reports/allure-report/allureReport/*
+            #zip -r report.zip build/reports/allure-report/allureReport/*
             ''')
-        archiveArtifacts(artifacts: 'report.zip')
+       // archiveArtifacts(artifacts: 'report.zip')
 
         allure([
                 includeProperties: true,
                 jdk              : '',
                 properties       : [],
                 reportBuildPolicy: 'ALWAYS',
-                results          : [[path: 'allure-results']]
+                results          : [[path: 'build/allure-results']]
         ])
 
     }
