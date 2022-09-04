@@ -2,7 +2,7 @@ task_branch = "${TEST_BRANCH_NAME}"
 def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch"
 
-withEnv([ "branch=${branch as GString}"]) {
+withEnv([ "branch=${branch}".toString()]) {
     stage("Checkout Branch") {
         if (!"$branch".contains("master")) {
             try {
@@ -25,7 +25,7 @@ withEnv([ "branch=${branch as GString}"]) {
 
 def testPart(){
     try {
-        execSh( "./gradlew clean testme")
+        sh "./gradlew clean testme"
     } catch (err){
         echo "some test are failed"
         throw("${err}")
