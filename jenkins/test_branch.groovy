@@ -7,7 +7,10 @@ currentBuild.displayName = "$branch_cutted"
         if (!"$branch_cutted".contains("master")) {
             try {
                 echo "Working with $branch_cutted"
-                sh 'echo "hello world"'
+
+                labelShell(label: 'Build Private Apps', script: '''
+                echo "helolo"
+                   ''')
                 sh('git clone git@gitlab.com:epickonfetka/cicd-threadqa.git'.toString())
                 sh("git checkout $branch_cutted".toString())
                 sh('git merge master')
