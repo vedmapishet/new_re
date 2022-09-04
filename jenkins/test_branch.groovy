@@ -29,6 +29,8 @@ withEnv(["branch=${branch_cutted}"]) {
 def testPart() {
     try {
         labelledShell(label: 'Run tests', script: '''
+            ls
+            pwd
             ./gradlew clean testme
         ''')
     } catch (err) {
