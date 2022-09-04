@@ -11,7 +11,7 @@ withEnv([ "branch=${branch_cutted}"]) {
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
                   git checkout $branch
                   git merge master
-                   ''')
+                   '''.toString())
             } catch (err) {
                 echo "Failed to merge master to branch $branch_cutted"
                 throw("${err}")
