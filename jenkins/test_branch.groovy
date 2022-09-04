@@ -45,6 +45,7 @@ def getProject(String repo, String branch) {
 def testPart() {
     try {
         labelledShell(label: 'Run API tests', script: '''
+            chmod +x gradlew
             ./gradlew -x test apiTests
         ''')
         labelledShell(label: 'Run UI tests', script: '''
