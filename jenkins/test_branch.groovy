@@ -59,6 +59,7 @@ def testPart() {
             ./gradlew allureReport
             zip -r report.zip build/reports/allure-report/allureReport/*
             ''')
+        archiveArtifacts(artifacts: 'report.zip')
     }
 }
 
