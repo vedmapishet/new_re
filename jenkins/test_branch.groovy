@@ -2,6 +2,8 @@ task_branch = "${TEST_BRANCH_NAME}"
 def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch_cutted"
 
+
+
 node {
     withEnv(["branch=${branch_cutted}"]) {
         stage("Checkout Branch") {
@@ -28,9 +30,12 @@ node {
     }
 }
 
+
+
 def testPart() {
     try {
         labelledShell(label: 'Run tests', script: '''
+            git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
             ls
             pwd
             ./gradlew clean testme
