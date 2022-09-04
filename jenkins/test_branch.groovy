@@ -1,11 +1,13 @@
 task_branch = "${TEST_BRANCH_NAME}"
-def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
-currentBuild.displayName = "$branch"
+def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
+currentBuild.displayName = "$branch_cutted"
 
-withEnv([ "branch=${branch}".toString()]) {
+withEnv([ "branch=${branch_cutted}".toString()]) {
     stage("Checkout Branch") {
         if (!"$branch".contains("master")) {
             try {
+                echo "Working with $branch"
+                echo "Working with $branch_cutted"
                 sh "git clone git@gitlab.com:epickonfetka/cicd-threadqa.git"
                 sh "git checkout $branch"
                 sh "git merge master"
