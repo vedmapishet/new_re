@@ -7,9 +7,9 @@ currentBuild.displayName = "$branch_cutted"
         if (!"$branch_cutted".contains("master")) {
             try {
                 echo "Working with $branch_cutted"
-                shell("git clone git@gitlab.com:epickonfetka/cicd-threadqa.git")
-                shell("git checkout $branch_cutted")
-                shell("git merge master")
+                sh('git clone git@gitlab.com:epickonfetka/cicd-threadqa.git')
+                sh("git checkout $branch_cutted".toString())
+                sh('git merge master')
             } catch (err) {
                 echo "Failed to merge master to branch $branch_cutted"
                 throw("${err}")
