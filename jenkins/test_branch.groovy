@@ -26,6 +26,7 @@ node {
         }
 
         stage("Run tests") {
+            getProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch_cutted")
             testPart()
         }
     }
