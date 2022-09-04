@@ -1,23 +1,14 @@
 task_branch = "${TEST_BRANCH_NAME}"
 def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch"
-
-def downloadProject(String repo, String branch) {
-    cleanWs()
-    checkout scm: [
-            $class: 'GitSCM', branches: [[name: branch]],
-            userRemoteConfigs: [[
-                                        url: repo
-                                ]]
-    ]
-}
+git_base_url = "git@gitlab.com:epickonfetka/cicd-threadqa.git"
 
 
 withEnv([ "branch=${branch}"]) {
     stage("Merge Master") {
         if (!"$branch".contains("master")) {
             try {
-                downloadProject("git@gitlab.com:epickonfetka/cicd-threadqa.git".toString(), "$branch".toString())
+                sh "git clone $git_base_url"
                 sh "git checkout $branch"
                 sh "git merge master"
             } catch (err) {
@@ -35,7 +26,6 @@ withEnv([ "branch=${branch}"]) {
 }
 
 def testPart(){
-    downloadProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch")
     try {
         sh "./gradlew clean testme"
     } catch (err){
