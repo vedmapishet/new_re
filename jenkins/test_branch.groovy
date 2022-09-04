@@ -3,27 +3,29 @@ def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] :
 currentBuild.displayName = "$branch_cutted"
 
 pipeline {
-    withEnv(["branch=${branch_cutted}"]) {
-        stage("Checkout Branch") {
-            if (!"$branch_cutted".contains("master")) {
-                try {
-                    labelledShell(label: 'Merge Master to Branch', script: '''
+    stages {
+        withEnv(["branch=${branch_cutted}"]) {
+            stage("Checkout Branch") {
+                if (!"$branch_cutted".contains("master")) {
+                    try {
+                        labelledShell(label: 'Merge Master to Branch', script: '''
                   echo "Working with $branch"
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
                   git checkout $branch
                   git merge master
                    ''')
-                } catch (err) {
-                    echo "Failed to merge master to branch $branch_cutted"
-                    throw ("${err}")
+                    } catch (err) {
+                        echo "Failed to merge master to branch $branch_cutted"
+                        throw ("${err}")
+                    }
+                } else {
+                    echo "Current branch is master"
                 }
-            } else {
-                echo "Current branch is master"
             }
-        }
 
-        stage("Run tests") {
-            testPart()
+            stage("Run tests") {
+                testPart()
+            }
         }
     }
 }
