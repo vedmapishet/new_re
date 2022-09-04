@@ -8,9 +8,9 @@ withEnv([ "branch=${branch}"]) {
     stage("Checkout on Branch And Merge Master") {
         if (!"$branch".contains("master")) {
             try {
-                sh "git clone $git_base_url".toString()
-                sh "git checkout $branch".toString()
-                sh "git merge master".toString()
+                sh 'git clone ' + git_base_url
+                sh 'git checkout ' + branch
+                sh "git merge master"
             } catch (err) {
                 echo "Failed to merge master to branch $branch"
                 throw("${err}")
