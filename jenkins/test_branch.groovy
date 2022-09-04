@@ -1,4 +1,3 @@
-
 branch = "${TEST_BRANCH_NAME}"
 currentBuild.displayName = "$branch"
 
@@ -19,14 +18,11 @@ withEnv([ "branch=${branch}"]) {
             try {
                 cleanWs()
                 downloadProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch")
-                labelledShell(label: 'Merge Master', script: '''
-                git checkout $branch
-                git merge master
-              ''')
+
+                sh "git checkout $branch"
+                sh "git merge master"
             } catch (err) {
-                labelledShell(label: 'Error Merge', script: '''
                 echo "Failed to merge master to branch $branch"
-              ''')
                 throw("${err}")
             }
         } else {
@@ -42,20 +38,14 @@ withEnv([ "branch=${branch}"]) {
 def testPart(){
     downloadProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch")
     try {
-        labelledShell(label: 'Run tests', script: '''
-        ./gradlew clean testme
-      ''')
+        sh "./gradlew clean testme"
     } catch (err){
-        labelledShell(label: 'Job Failed', script: '''
         echo "some test are failed"
-      ''')
         throw("${err}")
     } finally {
-        labelledShell(label: 'Zip test report', script: '''
-                ./gradlew allureReport
-                zip -r report.zip build/reports/allure-report/allureReport/*)
-                ''')
-        echo "Stage was finished"
+                sh "./gradlew allureReport"
+                sh "zip -r report.zip build/reports/allure-report/allureReport/*"
+                echo "Stage was finished"
     }
 }
 
