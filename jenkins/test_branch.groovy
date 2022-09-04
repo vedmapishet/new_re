@@ -16,9 +16,7 @@ withEnv([ "branch=${branch}"]) {
     stage("Merge Master") {
         if (!"$branch".contains("master")) {
             try {
-                cleanWs()
                 downloadProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch")
-
                 sh "git checkout $branch"
                 sh "git merge master"
             } catch (err) {
