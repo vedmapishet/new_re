@@ -3,6 +3,7 @@ def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] :
 currentBuild.displayName = "$branch_cutted"
 
 pipeline {
+    agent any
     stages {
         withEnv(["branch=${branch_cutted}"]) {
             stage("Checkout Branch") {
@@ -22,7 +23,6 @@ pipeline {
                     echo "Current branch is master"
                 }
             }
-
             stage("Run tests") {
                 testPart()
             }
