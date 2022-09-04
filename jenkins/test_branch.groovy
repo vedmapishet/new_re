@@ -2,7 +2,7 @@ task_branch = "${TEST_BRANCH_NAME}"
 def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch"
 
-//withEnv([ "branch=${branch}"]) {
+withEnv([ "branch=${branch as GString}"]) {
     stage("Checkout Branch") {
         if (!"$branch".contains("master")) {
             try {
@@ -21,7 +21,7 @@ currentBuild.displayName = "$branch"
     stage("Run tests") {
         testPart()
     }
-//}
+}
 
 def testPart(){
     try {
