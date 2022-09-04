@@ -13,7 +13,7 @@ node {
                     labelledShell(label: 'Merge Master to Branch', script: '''
                   echo "Working with $branch"
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
-                  git checkout $branch
+                  git checkout origin/$branch
                   git merge origin/master
                    ''')
                 } catch (err) {
