@@ -4,16 +4,16 @@ currentBuild.displayName = "$branch_cutted"
 
 pipeline {
     agent any
-    withEnv(["branch=${branch_cutted}"]) {
+   // withEnv(["branch=${branch_cutted}"]) {
         stages {
             stage("Checkout Branch") {
                 script {
                     if (!"$branch_cutted".contains("master")) {
                         try {
                             labelledShell(label: 'Merge Master to Branch', script: '''
-                  echo "Working with $branch"
+                  echo "Working with branch_cutted"
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
-                  git checkout $branch
+                  git checkout branch_cutted
                   git merge master
                    ''')
                         } catch (err) {
@@ -29,7 +29,7 @@ pipeline {
                 testPart()
             }
         }
-    }
+  //  }
 }
 
 def testPart() {
