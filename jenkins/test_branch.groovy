@@ -11,9 +11,11 @@ withEnv([ "branch=${branch}"]) {
     stage("Checkout Branch") {
         if (!"$branch".contains("master")) {
             try {
-                execSh("git clone $git_base_url")
-                execSh("git checkout $branch")
-                execSh("git merge master")
+                sh """
+git clone $git_base_url
+git checkout $branch
+git merge master
+"""
             } catch (err) {
                 echo "Failed to merge master to branch $branch"
                 throw("${err}")
