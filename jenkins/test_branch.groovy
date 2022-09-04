@@ -44,10 +44,11 @@ def getProject(String repo, String branch) {
 
 def testPart() {
     try {
-        labelledShell(label: 'Run tests', script: '''
-            ls
-            pwd
-            ./gradlew clean testme
+        labelledShell(label: 'Run API tests', script: '''
+            ./gradlew -x test apiTests
+        ''')
+        labelledShell(label: 'Run UI tests', script: '''
+            ./gradlew -x test uiTests
         ''')
     } catch (err) {
         echo "some test are failed"
