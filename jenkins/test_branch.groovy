@@ -4,8 +4,8 @@ currentBuild.displayName = "$branch_cutted"
 
 pipeline {
     agent any
-    stages {
-        withEnv(["branch=${branch_cutted}"]) {
+    withEnv(["branch=${branch_cutted}"]) {
+        stages {
             stage("Checkout Branch") {
                 if (!"$branch_cutted".contains("master")) {
                     try {
@@ -30,20 +30,20 @@ pipeline {
     }
 }
 
-    def testPart() {
-        try {
-            labelledShell(label: 'Run tests', script: '''
+def testPart() {
+    try {
+        labelledShell(label: 'Run tests', script: '''
 .       /gradlew clean testme
         ''')
-        } catch (err) {
-            echo "some test are failed"
-            throw ("${err}")
-        } finally {
-            labelledShell(label: 'Generate Allure Report', script: '''
+    } catch (err) {
+        echo "some test are failed"
+        throw ("${err}")
+    } finally {
+        labelledShell(label: 'Generate Allure Report', script: '''
             ./gradlew allureReport
             zip -r report.zip build/reports/allure-report/allureReport/*
             ''')
-        }
     }
+}
 
 
