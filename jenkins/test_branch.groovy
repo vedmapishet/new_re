@@ -3,12 +3,13 @@ def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] :
 currentBuild.displayName = "$branch_cutted"
 
 
-
 node {
     withEnv(["branch=${branch_cutted}"]) {
         stage("Checkout Branch") {
             if (!"$branch_cutted".contains("master")) {
                 try {
+                    getProject("git@gitlab.com:epickonfetka/cicd-threadqa.git", "$branch_cutted")
+
                     labelledShell(label: 'Merge Master to Branch', script: '''
                   echo "Working with $branch"
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
@@ -30,12 +31,19 @@ node {
     }
 }
 
-
+def getProject(String repo, String branch) {
+    cleanWs()
+    checkout scm: [
+            $class           : 'GitSCM', branches: [[name: branch]],
+            userRemoteConfigs: [[
+                                        url: repo
+                                ]]
+    ]
+}
 
 def testPart() {
     try {
         labelledShell(label: 'Run tests', script: '''
-            git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
             ls
             pwd
             ./gradlew clean testme
