@@ -4,7 +4,7 @@ currentBuild.displayName = "$branch"
 git_base_url = "git@gitlab.com:epickonfetka/cicd-threadqa.git"
 
 
-withEnv([ "branch=${branch.toString()}"]) {
+withEnv([ "branch=${branch}"]) {
     stage("Checkout on Branch And Merge Master") {
         if (!"$branch.toString()".contains("master")) {
             try {
