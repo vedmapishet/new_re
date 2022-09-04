@@ -1,4 +1,3 @@
-@Library('helper-lib')_
 
 branch = "${TEST_BRANCH_NAME}"
 currentBuild.displayName = "$branch"
