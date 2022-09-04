@@ -1,8 +1,8 @@
-pipeline {
-    task_branch = "${TEST_BRANCH_NAME}"
-    def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
-    currentBuild.displayName = "$branch_cutted"
+task_branch = "${TEST_BRANCH_NAME}"
+def branch_cutted = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
+currentBuild.displayName = "$branch_cutted"
 
+pipeline {
     withEnv(["branch=${branch_cutted}"]) {
         stage("Checkout Branch") {
             if (!"$branch_cutted".contains("master")) {
