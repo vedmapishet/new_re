@@ -1,4 +1,5 @@
-branch = "${TEST_BRANCH_NAME}"
+task_branch = "${TEST_BRANCH_NAME}"
+def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch"
 
 def downloadProject(repo, branch) {
@@ -41,9 +42,9 @@ def testPart(){
         echo "some test are failed"
         throw("${err}")
     } finally {
-                sh "./gradlew allureReport"
-                sh "zip -r report.zip build/reports/allure-report/allureReport/*"
-                echo "Stage was finished"
+        sh "./gradlew allureReport"
+        sh "zip -r report.zip build/reports/allure-report/allureReport/*"
+        echo "Stage was finished"
     }
 }
 
