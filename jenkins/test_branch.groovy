@@ -1,7 +1,6 @@
 task_branch = "${TEST_BRANCH_NAME}"
-def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
+def branch = task_branch.contains("origin") ? task_branch.split('/')[1].toString() : task_branch.trim().toString()
 currentBuild.displayName = "$branch"
-git_base_url = "git@gitlab.com:epickonfetka/cicd-threadqa.git"
 
 def execSh(String script){
     sh(returnStdout: true, script: script as GString)
@@ -12,10 +11,10 @@ withEnv([ "branch=${branch}"]) {
         if (!"$branch".contains("master")) {
             try {
                 sh """
-git clone $git_base_url
-git checkout $branch
-git merge master
-"""
+                git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
+                git checkout $branch
+                git merge master
+                """
             } catch (err) {
                 echo "Failed to merge master to branch $branch"
                 throw("${err}")
