@@ -2,8 +2,7 @@ task_branch = "${TEST_BRANCH_NAME}"
 def branch = task_branch.contains("origin") ? task_branch.split('/')[1] : task_branch.trim()
 currentBuild.displayName = "$branch"
 
-def downloadProject(repo, branch) {
-    echo "downloading project with custom branch"
+def downloadProject(String repo, String branch) {
     cleanWs()
     checkout scm: [
             $class: 'GitSCM', branches: [[name: branch]],
