@@ -8,7 +8,7 @@ currentBuild.displayName = "$branch_cutted"
             try {
                 echo "Working with $branch_cutted"
 
-                labelShell(label: 'Build Private Apps', script: '''
+                labelledShell(label: 'Build Private Apps', script: '''
                 echo "helolo"
                    ''')
                 sh('git clone git@gitlab.com:epickonfetka/cicd-threadqa.git'.toString())
