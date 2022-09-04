@@ -14,7 +14,7 @@ node {
                   echo "Working with $branch"
                   git clone git@gitlab.com:epickonfetka/cicd-threadqa.git
                   git checkout $branch
-                  git merge master
+                  git merge origin/master
                    ''')
                 } catch (err) {
                     echo "Failed to merge master to branch $branch_cutted"
@@ -60,6 +60,15 @@ def testPart() {
             zip -r report.zip build/reports/allure-report/allureReport/*
             ''')
         archiveArtifacts(artifacts: 'report.zip')
+
+        allure([
+                includeProperties: true,
+                jdk              : '',
+                properties       : [],
+                reportBuildPolicy: 'ALWAYS',
+                results          : [[path: 'allure-results']]
+        ])
+
     }
 }
 
