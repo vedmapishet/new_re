@@ -4,15 +4,15 @@ currentBuild.displayName = "$branch"
 git_base_url = "git@gitlab.com:epickonfetka/cicd-threadqa.git"
 
 
-withEnv([ "branch=${branch}"]) {
-    stage("Merge Master") {
-        if (!"$branch".contains("master")) {
+withEnv([ "branch=${branch.toString()}"]) {
+    stage("Checkout on Branch And Merge Master") {
+        if (!"$branch.toString()".contains("master")) {
             try {
-                sh "git clone $git_base_url"
-                sh "git checkout $branch"
+                sh "git clone $git_base_url.toString()"
+                sh "git checkout $branch.toString()"
                 sh "git merge master"
             } catch (err) {
-                echo "Failed to merge master to branch $branch"
+                echo "Failed to merge master to branch $branch.toString()"
                 throw("${err}")
             }
         } else {
