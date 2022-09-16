@@ -15,7 +15,6 @@ node {
                   git clone $base_url
                   git checkout origin/$branch
                   git merge origin/master
-                  git push --all origin
                    ''')
                 } catch (err) {
                     echo "Failed to merge master to branch $branch_cutted"
