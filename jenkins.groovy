@@ -11,10 +11,7 @@ node {
                 try {
                     getProject("$base_git_url", "$branch_cutted")
                     labelledShell(label: 'Merge Master to Branch', script: '''
-                  git config --global user.name "Jenkins"
-                  echo "Working with $branch"
                   git clone $base_url
-                  git checkout origin/$branch
                   git merge origin/master
                    ''')
                 } catch (err) {
