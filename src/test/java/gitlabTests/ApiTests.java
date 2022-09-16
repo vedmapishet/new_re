@@ -22,6 +22,13 @@ public class ApiTests {
         RestAssured.baseURI = "https://api.spacexdata.com/v4";
     }
 
+
+    @Test
+    public void newTestWithFalse(){
+        Assertions.assertTrue(false);
+    }
+
+
     @Test
     public void checkCeoIsElonMusk(){
         given().get("/company")
