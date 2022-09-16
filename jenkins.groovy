@@ -10,17 +10,12 @@ node {
             if (!"$branch_cutted".contains("master")) {
                 try {
                     getProject("$base_git_url", "$branch_cutted")
-                    labelledShell(label: 'Merge Master to Branch', script: '''
-                  git clone $base_url
-                  git merge origin/master
-                   ''')
                 } catch (err) {
-                    echo "Failed to merge master to branch $branch_cutted"
+                    echo "Failed get branch $branch_cutted"
                     throw ("${err}")
                 }
             } else {
                 echo "Current branch is master"
-                getProject("$base_git_url", "$branch_cutted")
             }
         }
 
