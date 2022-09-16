@@ -16,7 +16,6 @@ node {
                   git checkout origin/$branch
                   git merge origin/master
                   git push --all origin
-                  chmod +x gradlew
                    ''')
                 } catch (err) {
                     echo "Failed to merge master to branch $branch_cutted"
@@ -69,7 +68,10 @@ def getTestStages(testTags) {
 
 def runTestWithTag(String tag) {
     try {
-        labelledShell(label: "Run ${tag}", script: "./gradlew -x test ${tag}")
+        labelledShell(label: "Run ${tag}", script: '''
+            chmod +x gradlew 
+            ./gradlew -x test ${tag}
+                    ''')
     } finally {
         echo "some failed tests"
     }
