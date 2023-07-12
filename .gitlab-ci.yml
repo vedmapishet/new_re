@@ -12,14 +12,10 @@ default:
 before_script:
       - apt-get update -y
       - apt install curl zip unzip wget -y
-      - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-      - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+      - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+      - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
       - apt-get update
-      - wget http://archive.ubuntu.com/ubuntu/pool/main/libu/libu2f-host/libu2f-udev_1.1.4-1_all.deb
-      - dpkg -i libu2f-udev_1.1.4-1_all.deb
-      - wget http://security.ubuntu.com/ubuntu/pool/main/n/nss/libnss3_3.35-2ubuntu2.16_amd64.deb
-      - dpkg -i libnss3_3.35-2ubuntu2.16_amd64.deb 
-      - apt -y install google-chrome-stable -y
+      - apt -y install google-chrome-stable
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
       - sdk version
