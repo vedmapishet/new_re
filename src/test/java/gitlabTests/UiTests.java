@@ -14,6 +14,7 @@ public class UiTests {
 
     @BeforeAll
     public static void setUp(){
+        WebDriverManager.chromedriver().setup();
         Configuration.headless = true;
     }
 
