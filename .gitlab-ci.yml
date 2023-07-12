@@ -17,6 +17,7 @@ test-stage:
     artifacts:
       when: always
       paths:
+        - .gradle/
         - build/allure-results
 
 Allure report:
