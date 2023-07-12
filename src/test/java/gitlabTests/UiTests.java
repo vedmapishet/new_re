@@ -32,7 +32,7 @@ public class UiTests {
     }
 
     private void assertAnswer(String value){
-        $x("//input[@name='q']").sendKeys(value + "=" + Keys.ENTER);
+        $x("//textarea[@name='q']").sendKeys(value + "=" + Keys.ENTER);
         String answer = $x("//span[@id='cwos']").getText();
         Assertions.assertEquals("4", answer);
     }
