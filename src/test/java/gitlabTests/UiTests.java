@@ -21,6 +21,7 @@ public class UiTests {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");  
         options.addArguments("--disable-dev-shm-usage"); 
+        options.addArguments("--start-maximized"); 
         Configuration.browserCapabilities = options;
         Configuration.headless = true;
     }
