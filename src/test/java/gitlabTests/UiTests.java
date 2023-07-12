@@ -5,6 +5,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Keys;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 
 import static com.codeborne.selenide.Selenide.$x;
