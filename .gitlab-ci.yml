@@ -18,7 +18,9 @@ before_script:
       - apt -y install chromium-browser
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk install java 11.0.7-open
+      - sdk list java
+      - sdk install java 8.0.181-zulu
+
 
 test-stage:
     stage: test
