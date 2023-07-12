@@ -15,11 +15,11 @@ before_script:
       - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
       - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
       - apt-get update
-      - apt install equivs
+      - apt -y install equivs
       - equivs-control libu2f-udev
       - equivs-build libu2f-udev
       - dpkg -i libu2f-udev_1.0_all.deb
-      - apt install google-chrome-stable -y
+      - apt -y install google-chrome-stable -y
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
       - sdk version
