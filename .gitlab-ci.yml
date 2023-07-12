@@ -18,8 +18,6 @@ before_script:
       - apt -y install chromium-browser
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk version
-      - sdk ls java
       - sdk install java 11.0.7-open
 
 test-stage:
