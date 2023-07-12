@@ -1,4 +1,4 @@
-image: ubuntu:16.04
+image: markhobson/maven-chrome
 
 stages:
  - test
@@ -7,20 +7,6 @@ stages:
 default:
   tags:
     - ubuntu
-
-
-before_script:
-      - apt-get update -y
-      - apt install curl zip unzip wget -y
-      - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
-      - sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-      - apt-get update
-      - apt -y install chromium-browser
-      - curl -s "https://get.sdkman.io" | bash
-      - source "$HOME/.sdkman/bin/sdkman-init.sh"
-      - sdk list java
-      - sdk install java 8.0.372-amzn
-
 
 test-stage:
     stage: test
