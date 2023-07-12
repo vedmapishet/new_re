@@ -26,6 +26,7 @@ test-stage:
     stage: test
     allow_failure: true
     script:
+        - chmod +x gradlew
         - ./gradlew -x test uiTests
     artifacts:
       when: always
