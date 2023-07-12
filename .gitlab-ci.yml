@@ -17,7 +17,7 @@ before_script:
       - apt-get update
       - wget http://archive.ubuntu.com/ubuntu/pool/main/libu/libu2f-host/libu2f-udev_1.1.4-1_all.deb
       - dpkg -i libu2f-udev_1.1.4-1_all.deb
-      - apt -y install apt install libnss3
+      - apt -y install libnss3
       - apt -y install google-chrome-stable -y
       - curl -s "https://get.sdkman.io" | bash
       - source "$HOME/.sdkman/bin/sdkman-init.sh"
