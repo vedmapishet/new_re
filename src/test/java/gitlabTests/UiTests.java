@@ -17,6 +17,10 @@ public class UiTests {
     @BeforeAll
     public static void setUp(){
         WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");  
+        options.addArguments("--disable-dev-shm-usage"); 
+        Configuration.browserCapabilities = options;
         Configuration.headless = true;
     }
 
