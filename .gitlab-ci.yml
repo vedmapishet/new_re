@@ -6,7 +6,7 @@ stages:
 
 default:
   tags:
-    - pcdocker
+    - ubuntu
 
 
 before_script:
